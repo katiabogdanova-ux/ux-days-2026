@@ -17,29 +17,6 @@
     line-height: 1.7;
   }
 
-  /* SKIP LINK */
-  .skip-link {
-    position: absolute;
-    top: -100%;
-    left: 8px;
-    background: #1a1714;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 0 0 4px 4px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    z-index: 99999;
-  }
-  .skip-link:focus { top: 0; }
-
-  /* FOCUS VISIBLE */
-  :focus-visible {
-    outline: 2px solid #5C1A1A;
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
-
   .page {
     max-width: 780px;
     margin: 0 auto;
@@ -56,7 +33,7 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #6a6057;
+    color: #8a8077;
     margin-bottom: 16px;
   }
 
@@ -116,12 +93,12 @@
   }
 
   /* SECTION TITLE */
-  h2.section-title {
+  .section-title {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6a6057;
+    color: #8a8077;
     margin-bottom: 24px;
   }
 
@@ -165,7 +142,7 @@
 
   .talk-speaker .role {
     font-size: 13px;
-    color: #6a6057;
+    color: #8a8077;
   }
 
   .talk-subject {
@@ -270,13 +247,46 @@
   .data-table tr:last-child td { border-bottom: none; }
   .data-table .hi { color: #1a5c35; font-weight: 600; }
 
+  /* RÉFLEXION */
+  .reflexion {
+    background: #EFECE6;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 48px 0;
+  }
+
+  .reflexion .section-title { margin-bottom: 16px; }
+
+  .reflexion p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #2a2520;
+    margin-bottom: 12px;
+  }
+
+  .reflexion p:last-child { margin-bottom: 0; }
+
+  .reflexion-photo {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+
+  .reflexion-photo img {
+    width: 100%;
+    display: block;
+    max-height: 280px;
+    object-fit: cover;
+    object-position: center top;
+  }
+
   /* AUTHOR BYLINE */
   .author-byline {
     margin-top: 24px;
     display: flex;
     align-items: center;
     gap: 12px;
-    flex-wrap: wrap;
   }
   .author-byline .author-name {
     font-size: 13px;
@@ -285,20 +295,19 @@
   }
   .author-byline .author-role {
     font-size: 12px;
-    color: #6a6057;
+    color: #8a8077;
   }
   .author-byline .author-sep {
     color: #DDD9D0;
     font-size: 13px;
-    aria-hidden: true;
   }
   .author-byline a {
     font-size: 12px;
     color: #5C1A1A;
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: 500;
   }
-  .author-byline a:hover { text-decoration: none; }
+  .author-byline a:hover { text-decoration: underline; }
 
   /* FOOTER */
   .footer {
@@ -318,7 +327,7 @@
   }
   .footer-meta {
     font-size: 12px;
-    color: #6a6057;
+    color: #8a8077;
   }
 
   /* TAKEAWAYS */
@@ -336,7 +345,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 600;
-    color: #857870;
+    color: #C8C0B0;
     line-height: 1;
     min-width: 28px;
     margin-top: 2px;
@@ -354,7 +363,6 @@
     color: #6a6057;
     line-height: 1.6;
   }
-
   /* VERTICAL PHOTO */
   .talk-photo-vertical {
     margin: 24px 0;
@@ -376,35 +384,21 @@
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.93);
     z-index: 9999;
+    cursor: zoom-out;
   }
-  #lb.open { display: flex; align-items: center; justify-content: center; }
+  #lb.open { display: block; }
   #lb-img {
-    max-width: 92vw;
-    max-height: 90vh;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 95vw;
+    max-height: 95vh;
     object-fit: contain;
     border-radius: 4px;
     cursor: default;
   }
-  #lb-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(255,255,255,0.15);
-    border: 2px solid rgba(255,255,255,0.6);
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    font-size: 22px;
-    line-height: 1;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #lb-close:hover { background: rgba(255,255,255,0.28); }
 
-  /* Zoom cursor on all clickable photos */
+  /* Zoom cursor on all photos */
   .talk-photo img,
   .talk-photo-pair img,
   .talk-photo-vertical img,
@@ -412,10 +406,7 @@
 </style>
 </head>
 <body>
-
-<a href="#main-content" class="skip-link">Aller au contenu principal</a>
-
-<main class="page" id="main-content">
+<div class="page">
 
   <!-- HEADER -->
   <div class="header">
@@ -429,16 +420,16 @@
     </div>
     <div class="author-byline">
       <span class="author-name">Katia Bogdanova</span>
-      <span class="author-sep" aria-hidden="true">·</span>
-      <span class="author-role">Lead UX & Responsable Design Produit, Montaigne Nutrition</span>
-      <span class="author-sep" aria-hidden="true">·</span>
-      <a href="https://www.linkedin.com/in/bogdanovakatia/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Katia Bogdanova (ouvre dans un nouvel onglet)">LinkedIn ↗</a>
+      <span class="author-sep">·</span>
+      <span class="author-role">Lead UX & Responsable Design Produit, <a href="https://longevite-paris.com?utm_source=document&utm_medium=referral&utm_campaign=cr_uxdays_2026" target="_blank" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">Longévité Paris</a> · Montaigne Nutrition</span>
+      <span class="author-sep">·</span>
+      <a href="https://www.linkedin.com/in/bogdanovakatia/" target="_blank">LinkedIn</a>
     </div>
   </div>
 
   <!-- HERO -->
   <div class="hero-photo">
-    <img src="Bastian/Screenshot 2026-05-24 at 19.54.14.png" alt="Salle UX Days 2026 — grande salle de conférence pleine de participants">
+    <img src="Bastian/Screenshot 2026-05-24 at 19.54.14.png" alt="Salle UX Days 2026">
   </div>
 
   <!-- INTRO -->
@@ -454,7 +445,7 @@
   <hr>
 
   <!-- TALKS -->
-  <h2 class="section-title">Les talks qui m'ont marquée</h2>
+  <div class="section-title">Les talks qui m'ont marquée</div>
 
   <!-- Pablo -->
   <div class="talk">
@@ -488,7 +479,7 @@
       <img src="Antoine/IMG_1565.jpg" alt="Réponse de Claude Code - architecture complète de l'écran">
     </div>
     <div class="talk-photo">
-      <img src="Antoine/IMG_1569.jpg" alt="Antoine Pezé en train de présenter sur scène - UX Days 2026">
+      <img src="Antoine/IMG_1569.jpg" alt="Antoine Pezé - UX Days 2026">
     </div>
     <p>La barrière technique n'existe plus. La barrière intellectuelle, elle, reste entière.</p>
   </div>
@@ -558,24 +549,17 @@
     </div>
     <p>Son benchmark WCAG sur 10 LLMs révèle des écarts vertigineux - et des résultats qui surprennent :</p>
     <table class="data-table">
-      <thead>
-        <tr>
-          <th scope="col">Modèle</th>
-          <th scope="col">WCAG Pass Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>GPT-5 Mini</td><td class="hi">31%</td></tr>
-        <tr><td>GPT-5</td><td class="hi">29%</td></tr>
-        <tr><td>GPT-5 Codex</td><td>26%</td></tr>
-        <tr><td>GPT-5 Nano</td><td>20%</td></tr>
-        <tr><td>Gemini 2.5 Flash</td><td>1%</td></tr>
-        <tr><td>Gemini 2.5 Flash Lite</td><td>1%</td></tr>
-        <tr><td>Grok 4 Fast Non-Reasoning</td><td>0%</td></tr>
-        <tr><td>Claude Sonnet 4.5</td><td>0%</td></tr>
-        <tr><td>DeepSeek V3.1</td><td>0%</td></tr>
-        <tr><td>Claude Haiku 4.5</td><td>0%</td></tr>
-      </tbody>
+      <tr><th>Modèle</th><th>WCAG Pass Rate</th></tr>
+      <tr><td>GPT-5 Mini</td><td class="hi">31%</td></tr>
+      <tr><td>GPT-5</td><td class="hi">29%</td></tr>
+      <tr><td>GPT-5 Codex</td><td>26%</td></tr>
+      <tr><td>GPT-5 Nano</td><td>20%</td></tr>
+      <tr><td>Gemini 2.5 Flash</td><td>1%</td></tr>
+      <tr><td>Gemini 2.5 Flash Lite</td><td>1%</td></tr>
+      <tr><td>Grok 4 Fast Non-Reasoning</td><td>0%</td></tr>
+      <tr><td>Claude Sonnet 4.5</td><td>0%</td></tr>
+      <tr><td>DeepSeek V3.1</td><td>0%</td></tr>
+      <tr><td>Claude Haiku 4.5</td><td>0%</td></tr>
     </table>
     <div class="quote">Design systems used to govern what gets built. Now they have to govern what AI is allowed to generate from what got built.</div>
     <p>Nos systèmes de design doivent maintenant définir ce que l'IA est autorisée à générer - pas seulement ce que les humains construisent.</p>
@@ -584,6 +568,7 @@
     </div>
     <p>Le talk en trois temps : <strong>1.</strong> L'IA ne répare pas les systèmes cassés - elle les amplifie. <strong>2.</strong> L'accessibilité est une infrastructure réelle, pas une case à cocher : elle doit être testée, vérifiée, par des experts. <strong>3.</strong> Gouverner l'IA dans nos systèmes design, c'est poser la question : qui est l'"utilisateur moyen" qu'on a encodé dans nos données ? Qui est protégé ? Qui ne l'est pas ? Et surtout - qui détient les outputs de l'IA ?</p>
   </div>
+
 
   <!-- Elie Sloïm -->
   <div class="talk">
@@ -645,109 +630,75 @@
   </div>
 
   <!-- TAKEAWAYS -->
-  <h2 class="section-title">Ce que je retiens</h2>
+  <div class="section-title">Ce que je retiens</div>
 
   <div class="takeaway-item">
-    <span class="t-num" aria-hidden="true">1</span>
+    <span class="t-num">1</span>
     <div class="t-text">
       <strong>Le code est jetable, l'intention ne l'est pas</strong>
       <p>La valeur du designer se déplace vers la précision de la pensée. Formuler clairement ce qu'on veut devient la compétence clé.</p>
     </div>
   </div>
   <div class="takeaway-item">
-    <span class="t-num" aria-hidden="true">2</span>
+    <span class="t-num">2</span>
     <div class="t-text">
       <strong>L'IA amplifie nos structures - bonnes ou mauvaises</strong>
       <p>Des fondations solides + IA = effet de levier. Des fondations fragiles + IA = amplification des problèmes.</p>
     </div>
   </div>
   <div class="takeaway-item">
-    <span class="t-num" aria-hidden="true">3</span>
+    <span class="t-num">3</span>
     <div class="t-text">
       <strong>Concevoir, c'est résister à l'automatisme</strong>
       <p>La vitesse est le défaut. Choisir en conscience, c'est aller à contre-courant - et c'est là qu'est la valeur.</p>
     </div>
   </div>
   <div class="takeaway-item">
-    <span class="t-num" aria-hidden="true">4</span>
+    <span class="t-num">4</span>
     <div class="t-text">
       <strong>La question de la responsabilité n'est pas résolue</strong>
       <p>Qui décide, qui répond ? À mesure que l'IA entre dans nos process, cette question va devenir incontournable.</p>
     </div>
   </div>
   <div class="takeaway-item">
-    <span class="t-num" aria-hidden="true">5</span>
+    <span class="t-num">5</span>
     <div class="t-text">
       <strong>L'éthique n'est plus une posture - c'est un avantage concurrentiel</strong>
       <p>Les marques qui construisent la confiance fidélisent autrement. La rétention organique résiste là où la dépendance s'effondre au premier concurrent.</p>
     </div>
   </div>
 
+
   <!-- FOOTER -->
   <div class="footer">
-    <span class="footer-name">Katia Bogdanova · Lead UX & Responsable Design Produit, Montaigne Nutrition</span>
+    <span class="footer-name">Katia Bogdanova · Lead UX & Responsable Design Produit, <a href="https://longevite-paris.com?utm_source=document&utm_medium=referral&utm_campaign=cr_uxdays_2026" target="_blank" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">Longévité Paris</a> · Montaigne Nutrition</span>
     <span class="footer-meta">FLUPA UX Days 2026 · Vendredi 22 mai · Paris</span>
   </div>
 
-</main>
-
-<!-- LIGHTBOX -->
-<div id="lb" role="dialog" aria-modal="true" aria-label="Image agrandie">
-  <button id="lb-close" aria-label="Fermer l'image agrandie">×</button>
+</div>
+<div class="lb-overlay" id="lb">
   <img id="lb-img" src="" alt="">
 </div>
-
 <script>
   var overlay = document.getElementById('lb');
   var lbImg = document.getElementById('lb-img');
-  var lbClose = document.getElementById('lb-close');
-  var lastFocused = null;
-
-  function openLightbox(img) {
-    lastFocused = img;
-    lbImg.src = img.src;
-    lbImg.alt = img.alt;
-    overlay.classList.add('open');
-    lbClose.focus();
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-    if (lastFocused) lastFocused.focus();
-  }
 
   document.querySelectorAll('.page img').forEach(function(img) {
-    img.setAttribute('tabindex', '0');
-    img.setAttribute('role', 'button');
-    img.setAttribute('aria-label', 'Agrandir l\'image : ' + (img.alt || 'photo'));
-
+    if (img.id === 'lb-img') return;
+    img.style.cursor = 'zoom-in';
     img.addEventListener('click', function(e) {
       e.stopPropagation();
-      openLightbox(this);
-    });
-
-    img.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(this);
-      }
+      lbImg.src = this.src;
+      overlay.classList.add('open');
     });
   });
 
-  lbClose.addEventListener('click', closeLightbox);
-
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) closeLightbox();
+  overlay.addEventListener('click', function() {
+    overlay.classList.remove('open');
   });
 
-  overlay.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      lbClose.focus();
-    }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('open');
   });
 </script>
 </body>
