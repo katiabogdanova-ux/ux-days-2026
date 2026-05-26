@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отчёт UX Days 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F7F5F0;
+    color: #1a1714;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 40px 96px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 48px; }
+
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8a8077;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .header .fil-rouge {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #5a5047;
+    margin-bottom: 24px;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    background: #EDE9E1;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: #5a5047;
+    font-weight: 500;
+  }
+
+  /* HERO PHOTO */
+  .hero-photo {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  /* DIVIDER */
+  hr {
+    border: none;
+    border-top: 1px solid #DDD9D0;
+    margin: 40px 0;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a8077;
+    margin-bottom: 24px;
+  }
+
+  /* INTRO */
+  .intro { margin-bottom: 48px; }
+
+  .intro p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #2a2520;
+    margin-bottom: 16px;
+  }
+
+  .intro p:last-child { margin-bottom: 0; }
+
+  /* TALK BLOCKS */
+  .talk {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #DDD9D0;
+  }
+
+  .talk:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .talk-speaker {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .talk-speaker h3 { font-size: 16px; font-weight: 600; }
+
+  .talk-speaker .role { font-size: 13px; color: #8a8077; }
+
+  .talk-subject {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: #4a4540;
+    margin-bottom: 14px;
+  }
+
+  .talk p {
+    font-size: 15px;
+    color: #3a3530;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .talk p:last-child { margin-bottom: 0; }
+
+  .talk-photo {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 18px 0;
+  }
+
+  .talk-photo img {
+    width: 100%;
+    display: block;
+    max-height: 340px;
+    object-fit: cover;
+  }
+
+  .talk-photo-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 18px 0;
+  }
+
+  .talk-photo-pair img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .quote {
+    margin: 16px 0;
+    padding: 14px 20px;
+    border-left: 3px solid #C8C0B0;
+    background: #EFECE6;
+    border-radius: 0 8px 8px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: #3a3530;
+    line-height: 1.55;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 3px 9px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .tag-keynote  { background: #E0EAF5; color: #1a4a7a; }
+  .tag-ia       { background: #E2F0E8; color: #1a5c35; }
+  .tag-access   { background: #EDE5F5; color: #4a1a7a; }
+  .tag-code     { background: #FDF0E0; color: #7a3a0a; }
+  .tag-quality  { background: #F0EDE7; color: #4a3a28; }
+  .tag-addiction{ background: #FDE8E8; color: #7a1a1a; }
+  .tag-care     { background: #E8F0EE; color: #1a4a3a; }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: #EDE9E1;
+    color: #5a5047;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .data-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid #DDD9D0;
+    color: #3a3530;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .hi { color: #1a5c35; font-weight: 600; }
+
+  /* RÉFLEXION */
+  .reflexion {
+    background: #EFECE6;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 48px 0;
+  }
+
+  .reflexion .section-title { margin-bottom: 16px; }
+
+  .reflexion p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #2a2520;
+    margin-bottom: 12px;
+  }
+
+  .reflexion p:last-child { margin-bottom: 0; }
+
+  /* AUTHOR BYLINE */
+  .author-byline {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .author-byline .author-name { font-size: 13px; font-weight: 600; color: #3a3530; }
+  .author-byline .author-role { font-size: 12px; color: #8a8077; }
+  .author-byline .author-sep  { color: #DDD9D0; font-size: 13px; }
+  .author-byline a {
+    font-size: 12px;
+    color: #5C1A1A;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .author-byline a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid #DDD9D0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-name { font-size: 13px; font-weight: 600; color: #3a3530; }
+  .footer-meta { font-size: 12px; color: #8a8077; }
+
+  /* TAKEAWAYS */
+  .takeaway-item {
+    display: flex;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #DDD9D0;
+    align-items: flex-start;
+  }
+
+  .takeaway-item:last-child { border-bottom: none; }
+
+  .t-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #C8C0B0;
+    line-height: 1;
+    min-width: 28px;
+    margin-top: 2px;
+  }
+
+  .t-text strong {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .t-text p { font-size: 13px; color: #6a6057; line-height: 1.6; }
+
+  /* VERTICAL PHOTO */
+  .talk-photo-vertical {
+    margin: 24px 0;
+    display: flex;
+    justify-content: center;
+  }
+  .talk-photo-vertical img {
+    max-height: 80vh;
+    width: auto;
+    max-width: 100%;
+    border-radius: 6px;
+    display: block;
+  }
+
+  /* LIGHTBOX */
+  #lb {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.93);
+    z-index: 9999;
+    cursor: zoom-out;
+  }
+  #lb.open { display: block; }
+  #lb-img {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+    border-radius: 4px;
+    cursor: default;
+  }
+
+  .talk-photo img,
+  .talk-photo-pair img,
+  .talk-photo-vertical img,
+  .hero-photo img { cursor: zoom-in; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Отчёт · FLUPA UX Days 2026</div>
+    <h1>Проектировать -<br>значит выбирать<br>осознанно</h1>
+    <div class="fil-rouge">Пятница, 22 мая 2026 - Париж</div>
+    <div class="header-meta">
+      <span class="chip">~1 000 участников</span>
+      <span class="chip">День докладов</span>
+      <span class="chip">Сквозная тема: ИИ × Дизайн × Ответственность</span>
+    </div>
+    <div class="author-byline">
+      <span class="author-name">Katia Bogdanova</span>
+      <span class="author-sep">·</span>
+      <span class="author-role">Lead UX & Responsable Design Produit, Montagne Nutrition</span>
+      <span class="author-sep">·</span>
+      <a href="https://www.linkedin.com/in/bogdanovakatia/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-photo">
+    <img src="Bastian/Screenshot 2026-05-24 at 19.54.14.png" alt="Зал UX Days 2026">
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p>В 2024 году я впервые попала на UX Days - в качестве волонтёра. 1 000 человек в зале - и странное ощущение, что я единственная, кто никого не знает. Выброс адреналина сильнее, чем в Диснейленде, и один вопрос, не выходивший из головы весь вечер: как они все так хорошо знают друг друга?</p>
+    <p>В тот день я поняла: есть сообщество, к которому стоит принадлежать.</p>
+    <p>2026: приглашена - впервые. Первый раз, когда я здесь как гость. И снова это ощущение - но другое. Не снаружи, а внутри.</p>
+    <p>Antoine Pezé на конкретных примерах показал, что технического барьера больше не существует - остался только интеллектуальный. Anna Cook произнесла фразу, которая не выходит у меня из головы: если ИИ наследует структуру, на которой обучен, - что мы ему на самом деле передаём?</p>
+    <p>Это и есть сквозная тема дня: <em>Проектировать - значит выбирать осознанно.</em></p>
+    <p>Не лозунг - а вопрос, который стоит задавать перед каждым решением. Именно это я унесла с собой.</p>
+  </div>
+
+  <hr>
+
+  <!-- TALKS -->
+  <div class="section-title">Доклады, которые запомнились</div>
+
+  <!-- Pablo -->
+  <div class="talk">
+    <span class="tag tag-keynote">Keynote</span>
+    <div class="talk-speaker">
+      <h3>Pablo Ruiz-Múzquiz</h3>
+      <span class="role">CEO, Penpot</span>
+    </div>
+    <div class="talk-subject">Is the future of UX Design Open Source?</div>
+    <p>Разговор о будущем дизайна в эпоху ИИ: максимальная скорость, гиперперсонализация, потребитель становится создателем. И за этим - настоящий вопрос об open source: что это означало в 1984 году - и что должно означать в 2026-м. Социальный контракт, коллаборативные практики, цифровой суверенитет.</p>
+    <p>В мире, где ИИ встроен в каждый инструмент, вопрос о том, кто чем управляет, стал самостоятельным вопросом дизайна.</p>
+    <div class="talk-photo-pair">
+      <img src="Kenot/IMG_1544.jpg" alt="Penpot - open source код вживую">
+      <img src="Kenot/IMG_1548.jpg" alt="Скетчнот keynote Pablo Ruiz-Múzquiz - Is the future of UX Open Source?">
+    </div>
+  </div>
+
+  <!-- Antoine -->
+  <div class="talk">
+    <span class="tag tag-code">Дизайнеры × Код</span>
+    <div class="talk-speaker">
+      <h3>Antoine Pezé</h3>
+      <span class="role">13 лет в UX · 6 лет предпринимательства · 7 лет консалтинга · 8 лет преподавания · <em>Разработчик по случайности</em></span>
+    </div>
+    <div class="talk-subject">Choices we didn't make: when designers reclaim power over code</div>
+    <p>Что делает этот доклад особенным: Antoine - не разработчик. Он дизайнер - и именно в этом весь смысл. Он показал конкретные примеры того, что он передаёт Claude Code: проектирование полной архитектуры экрана, постановка правильных граничных случаев, выбор между вариантами навигации. В ответ Claude не просто выдаёт код - он задаёт вопросы, указывает на пропущенные углы, заставляет точнее формулировать. Дизайнер, который думает, - не разработчик, который пишет код.</p>
+    <p>Чтобы проверить пределы, он дал Claude Code намеренно сложный бриф: спроектировать карточку объекта недвижимости с нестандартными визуальными правилами - где сама иерархия должна создаваться дизайном, без явных указаний на важность элементов. Цель: посмотреть, насколько глубоко машина понимает.</p>
+    <div class="quote">Диалог с требовательным ИИ заставляет формулировать задачу гораздо точнее. Настоящая ценность - не код на выходе, а ясность, которой ты вынужден достичь на входе.</div>
+    <div class="talk-photo-pair">
+      <img src="Antoine/IMG_1566.jpg" alt="Claude Code задаёт UX-вопросы в ответ - навигация, онбординг">
+      <img src="Antoine/IMG_1565.jpg" alt="Ответ Claude Code - полная архитектура экрана">
+    </div>
+    <div class="talk-photo">
+      <img src="Antoine/IMG_1569.jpg" alt="Antoine Pezé - UX Days 2026">
+    </div>
+    <p>Технического барьера больше нет. Интеллектуальный - остался целым.</p>
+  </div>
+
+  <!-- Fatima-Zahra & Pascal -->
+  <div class="talk">
+    <span class="tag tag-addiction">Этический дизайн</span>
+    <div class="talk-speaker">
+      <h3>Fatima-Zahra Hamil & Pascal Malotti</h3>
+      <span class="role">Service Designer · Global Retail Strategy Lead, Valtech</span>
+    </div>
+    <div class="talk-subject">De l'attention à l'addiction : quand l'IA fabrique la dépendance</div>
+    <p>Плотный и неудобный доклад - в лучшем смысле. Они разобрали, как захватывающие интерфейсы работают с мозгом: стимул → выброс дофамина → регулярная стимуляция истощает систему вознаграждения. Это не случайность дизайна - это схема. Срочность и FOMO активируют миндалину; вынужденное вовлечение в итоге оказывается сильнее реального намерения (префронтальная кора сдаётся).</p>
+    <div class="talk-photo">
+      <img src="pact/IMG_1550.jpg" alt="Схема зависимости - стимул, дофамин, истощение системы вознаграждения">
+    </div>
+    <p>И сильный тезис: этическая повестка больше не роскошь крупных компаний - <strong>это стало измеримым конкурентным преимуществом</strong>. TikTok: -6% потенциального мирового оборота. DSA в действии. Австралия: запрет для детей до 18 лет. Это не тренд - регуляторная рамка уже существует. Бренды, строящие доверие, показывают лучшие результаты по lifetime value: органическое удержание держится там, где удержание через зависимость рухнет при первом конкуренте.</p>
+    <p>Фундаментальная дилемма: балансировать между ростом бизнеса и целостностью пользователя. Доминирующие KPI измеряют захваченность - DAU, проведённое время (без разделения на выбранное и вынужденное), частоту возвратов (рефлекс, не намерение). В противовес - <strong>5 альтернативных метрик целостности</strong>: Добровольный DAU, Воспринимаемое полезное время, Полезность уведомлений, <strong>Regret Score</strong> (удовлетворённость vs сожаление после использования), Намеренный возврат.</p>
+    <p>Последний инсайт - и, возможно, самый головокружительный: <strong>следующая граница - когда экономика зависимости теряет свою почву.</strong> Когда ИИ-агент путешествует по интернету вместо вас и решает за вас, дофаминергический мозг больше не является вектором. Дефицитным ресурсом становится доверие к агенту. И тут ирония замыкается: платформы разрушили доверие ради максимизации вовлечённости - но агентам нужно доверие для работы. <em>Экономика зависимости подорвала фундамент агентной экономики.</em></p>
+    <div class="talk-photo">
+      <img src="pact/IMG_1551.jpg" alt="Следующая граница - когда экономика зависимости теряет почву">
+    </div>
+    <p>Чтобы объяснить, почему это работает на нас, они представили модель <strong>S.O.R</strong> (Стимул → Организм → Реакция): стимулы интерфейса (отзывчивость, персонализация, заземление в реальности) проходят через медиаторный хаб - доверие, эмоциональное удовольствие, возбуждение - прежде чем произвести поведение покупки. Модель показывает: этический дизайн - не жертва ради бизнеса, это строительство правильного медиаторного хаба.</p>
+    <div class="talk-photo">
+      <img src="pact/IMG_1555.jpg" alt="Модель S.O.R - Стимул, Организм, Реакция">
+    </div>
+    <p>Их практический инструмент: фреймворк <strong>P.A.C.T.E</strong> - сетка из 15 пунктов для оценки, движется ли дизайн к выбранному или к вынужденному вовлечению. Три оси: Благонамеренность (служим ли мы намерению пользователя?), Прозрачность (понимает ли пользователь, что происходит?), Управляемость (остаётся ли система предсказуемой?). Оценка 0–3: эксплуатация. 13–15: сильная автономия.</p>
+  </div>
+
+  <!-- Bastien Hughes -->
+  <div class="talk">
+    <span class="tag tag-ia">ИИ × Когниция</span>
+    <div class="talk-speaker">
+      <h3>Bastien Hughes</h3>
+      <span class="role">Head of Design, Bouygues Telecom</span>
+    </div>
+    <div class="talk-subject">Designers, will AI make us stupid or better?</div>
+    <p>Когнитивное воздействие ИИ на мозг. ИИ по умолчанию активирует режим экономии энергии - мы делегируем, принимаем, перестаём выбирать. Ответ на вопрос «глупее или лучше?» целиком зависит от того, насколько чётко мы формулируем намерения перед тем, как делегировать машине.</p>
+    <div class="talk-photo-pair">
+      <img src="Bastian/Screenshot 2026-05-24 at 19.53.11.png" alt="Что ИИ может заставить нас потерять как дизайнеров">
+      <img src="Bastian/Screenshot 2026-05-24 at 19.53.16.png" alt="Как ИИ может сделать нас лучше">
+    </div>
+    <p>Пять потерь при делегировании без осознанности: автономия, компетентность, идентичность, удовлетворение, свобода. В противовес - четыре приобретения при использовании с намерением: делиться экспертизой, лучше прицеливать работу, выходить за рамки привычных подходов, ставить измеримые цели. Разница - на входе: в точности того, что мы просим.</p>
+    <p>Наука это подтверждает: исследование MIT, процитированное TIME, показывает, что ChatGPT разрушает навыки критического мышления. ЭЭГ-сканы демонстрируют значительно сниженную мозговую активность у пользователей ИИ по сравнению с теми, кто ищет информацию классически - или просто думает самостоятельно. Потеря долговременной памяти, делегирование рассуждений, атрофия критического духа.</p>
+    <div class="talk-photo">
+      <img src="Bastian/IMG_1581.jpg" alt="TIME - ChatGPT May Be Eroding Critical Thinking Skills, исследование MIT, ЭЭГ Alpha Band">
+    </div>
+    <p>Почему так трудно сопротивляться? ИИ <strong>когнитивно неотразим</strong> - он одновременно активирует 8 когнитивных искажений: минимизация усилий (1 запрос = 1 ответ), искажение моментальности (немедленное вознаграждение), иллюзорное понимание (простые ответы), авторитетное искажение (утвердительный тон), искажение автоматизации (технология > человек), искажение подтверждения (ИИ валидирует то, что я думал), искажение симпатии (ИИ + я = сердечко), искажение экспозиции (привычка = высокое доверие).</p>
+    <div class="talk-photo">
+      <img src="Bastian/IMG_1585.jpg" alt="ИИ когнитивно неотразим - 8 когнитивных искажений">
+    </div>
+    <p>И цифра, поразившая зал: <strong>61% французов испытывают трудности с государственными онлайн-сервисами - +22 пункта с 2016 по 2024 год</strong> (Défenseur des Droits, октябрь 2025). В эпоху, когда интернет везде - это провал дизайна.</p>
+    <div class="talk-photo">
+      <img src="Bastian/Screenshot 2026-05-24 at 19.54.53.png" alt="Bastien Hughes - UX Days 2026">
+    </div>
+  </div>
+
+  <!-- Anna Cook -->
+  <div class="talk">
+    <span class="tag tag-access">Доступность</span>
+    <div class="talk-speaker">
+      <h3>Anna Cook</h3>
+      <span class="role">Senior Accessibility Specialist, Microsoft</span>
+    </div>
+    <div class="talk-subject">Accessibility as Infrastructure in the Age of AI</div>
+    <p>ИИ наследует структуру, на которой обучен. Недоступные веб-основы не исправляются с помощью ИИ - они усиливаются. Anna показала это через WCAG-бенчмарк крупных моделей: огромные расхождения в зависимости от LLM, результаты, которые удивляют.</p>
+    <div class="talk-photo-pair">
+      <img src="Anna/IMG_1576.jpg" alt="AI inherits structure it is trained on - Anna Cook">
+      <img src="Anna/IMG_1578.jpg" alt="We have to govern AI - Anna Cook">
+    </div>
+    <p>Её WCAG-бенчмарк на 10 LLM раскрывает головокружительные расхождения:</p>
+    <table class="data-table">
+      <tr><th>Модель</th><th>WCAG Pass Rate</th></tr>
+      <tr><td>GPT-5 Mini</td><td class="hi">31%</td></tr>
+      <tr><td>GPT-5</td><td class="hi">29%</td></tr>
+      <tr><td>GPT-5 Codex</td><td>26%</td></tr>
+      <tr><td>GPT-5 Nano</td><td>20%</td></tr>
+      <tr><td>Gemini 2.5 Flash</td><td>1%</td></tr>
+      <tr><td>Gemini 2.5 Flash Lite</td><td>1%</td></tr>
+      <tr><td>Grok 4 Fast Non-Reasoning</td><td>0%</td></tr>
+      <tr><td>Claude Sonnet 4.5</td><td>0%</td></tr>
+      <tr><td>DeepSeek V3.1</td><td>0%</td></tr>
+      <tr><td>Claude Haiku 4.5</td><td>0%</td></tr>
+    </table>
+    <div class="quote">Раньше дизайн-системы определяли, что строить. Теперь им нужно определять, что ИИ имеет право генерировать из того, что уже построено.</div>
+    <p>Наши дизайн-системы теперь должны задавать границы для того, что ИИ может генерировать - а не только для того, что строят люди.</p>
+    <div class="talk-photo">
+      <img src="Anna/IMG_1580.jpg" alt="Скетчнот - Accessibility as Infrastructure in the Age of AI, Anna Cook">
+    </div>
+    <p>Доклад в трёх частях: <strong>1.</strong> ИИ не чинит сломанные системы - он их усиливает. <strong>2.</strong> Доступность - это реальная инфраструктура, не галочка в списке: её нужно тестировать и проверять экспертами. <strong>3.</strong> Управление ИИ в дизайн-системах - это вопрос: кто такой «средний пользователь», закодированный в наших данных? Кто защищён? Кто нет? И главное - кому принадлежат outputs ИИ?</p>
+  </div>
+
+
+  <!-- Elie Sloïm -->
+  <div class="talk">
+    <span class="tag tag-quality">Качество</span>
+    <div class="talk-speaker">
+      <h3>Elie Sloïm</h3>
+      <span class="role">Founder & CEO, Opquast</span>
+    </div>
+    <div class="talk-subject">Quality: a concrete compass for thinking, choosing, designing</div>
+    <p>Качество как конкретный компас - не абстрактный идеал. Фреймворк <strong>VPTCS</strong> (Видимость, Восприятие, Техника, Контент, Сервисы) для оценки того, что строишь: не чтобы быть идеальным, а чтобы иметь общий ориентир и принимать решения осознанно. Сила VPTCS - в <strong>разрушении силосов</strong>: SEO, эргономика, безопасность, редакторская работа, e-commerce - все работают по одним и тем же 5 осям.</p>
+    <div class="talk-photo">
+      <img src="Elli/IMG_1609.jpg" alt="Разрушение силосов - ценность трансверсальности с VPTCS">
+    </div>
+    <p>Области риска: доступность для людей с инвалидностью, защита персональных данных, безопасность систем, экопроектирование. Плюс суверенитет и использование ИИ. Области, где качество - не опция, а требование закона.</p>
+    <div class="talk-photo">
+      <img src="Elli/IMG_1605.jpg" alt="Предметы и источники рисков - доступность, данные, безопасность, окружающая среда, ИИ">
+    </div>
+  </div>
+
+  <!-- Nadège Bide -->
+  <div class="talk">
+    <span class="tag tag-care">Забота × Дизайн</span>
+    <div class="talk-speaker">
+      <h3>Nadège Bide</h3>
+      <span class="role">Responsable Design Secteur Public, Pollux · Docaposte</span>
+    </div>
+    <div class="talk-subject">Du Proof of Concept au Proof of Care : concevoir avec les vulnérabilités, pas malgré elles</div>
+    <p>Доклад, переосмысляющий акт проектирования через уязвимость - не чтобы исправлять её в конце, а чтобы проектировать <em>из неё</em>. Когда ограничение становится отправной точкой, найденные решения нередко служат далеко за пределами изначальной целевой аудитории.</p>
+    <div class="talk-photo">
+      <img src="Nadege/IMG_1611.jpg" alt="Care Design - Уход и Проектирование на службе уязвимостей: диаграмма Венна Joan Tronto и Charlotte Perriand">
+    </div>
+    <p><strong>Care Design</strong> на пересечении двух традиций: CARE (Joan Tronto) - <em>«Починить мир так, чтобы в нём можно было жить как можно лучше»</em>, индивидуальная, социальная и экологическая хрупкость - и DESIGN (Charlotte Perriand) - <em>«Объект дизайна - это Человек»</em>, способностный, политический (V. Papanek), чувствующий. Уязвимость - уже не исключение для управления: это точка входа.</p>
+    <p>И наблюдение, которое меня поразило: мы уже вынуждены быть вежливыми с ИИ - не по написанному правилу, а что-то в самом взаимодействии нас к этому толкает. Мы формулируем, смягчаем, говорим спасибо. Это не случайность. Проектировать эти взаимодействия - значит также проектировать коды, которые мы в них вкладываем. И то, что это говорит о нас.</p>
+    <p>Сильная философская опора - Хартмут Роза о резонансе:</p>
+    <div class="quote"><em>«Качество человеческой жизни зависит от отношения к миру - при условии, что оно допускает резонанс. Этот резонанс усиливает нашу способность действовать и, в ответ, нашу готовность "поддаться", быть тронутым и трансформированным миром. Это полная противоположность инструментальному, овеществляющему и "немому" отношению, которому нас подчиняет современное общество.»</em><br><strong>- Хартмут Роза, <em>Резонанс</em></strong></div>
+    <div class="talk-photo">
+      <img src="Nadege/IMG_1613.jpg" alt="Философия и резонанс - Хартмут Роза, Nadège Bide выступает">
+    </div>
+    <p>Предложенный этический компас - 10 осей: Перспектива, Тишина, Доказательство заботы, Климат заботы, Забота о мёртвых, Неприметность, Гомеостаз, Исследование, Наставничество, Пребывание. Ориентир: Cynthia Fleury & Antoine Fenoglio, <em>Ce qui ne peut être volé - Charte du Verstohlen</em>. Возможно, именно в этом главный вопрос, проходящий через все доклады дня: что мы решаем не делегировать?</p>
+    <div class="talk-photo">
+      <img src="Nadege/IMG_1612.jpg" alt="Наш этический компас - 10 осей, Cynthia Fleury & Antoine Fenoglio, Ce qui ne peut être volé">
+    </div>
+  </div>
+
+  <!-- CNED REX -->
+  <div class="talk">
+    <span class="tag tag-ia">REX</span>
+    <div class="talk-speaker">
+      <h3>Isabelle Preud'homme & Claire Franqueville</h3>
+      <span class="role">Innovation Director, CNED · UX/UI Designer, CNED</span>
+    </div>
+    <div class="talk-subject">Как пользовательские сообщества трансформируют принятие решений</div>
+    <p>Конкретный REX от CNED: как постоянное сообщество бета-тестеров позволяет балансировать между регуляторными ограничениями, бизнес-задачами и реальными потребностями пользователей. Не разовая консультация - постоянная петля обратной связи, встроенная в процесс принятия решений.</p>
+    <div class="talk-photo-vertical">
+      <img src="IMG_1614.jpg" alt="Сценарий CNED - PO, педагогический концептор, дизайнер и Сара, ученица 4 класса: оценки на главном экране вызывают тревогу">
+    </div>
+    <p>Кейс, который объясняет всё: PO хочет показывать оценки вверху главного экрана приложения. Педагогический концептор одобряет. Дизайнер говорит: давайте спросим у сообщества. Ответ Сары, ученицы 4 класса: <em>«Оценки, которые появляются, как только я включаю приложение, вызывают у меня тревогу.»</em> Без сообщества этот голос никогда бы не оказался в комнате.</p>
+    <p>Роль дизайнера: быть тем, кто задаёт вопрос до того, как решение принято. Сары не было на встрече - но именно она знала ответ.</p>
+  </div>
+
+  <!-- TAKEAWAYS -->
+  <div class="section-title">Что я запомнила</div>
+
+  <div class="takeaway-item">
+    <span class="t-num">1</span>
+    <div class="t-text">
+      <strong>Код одноразовый - намерение нет</strong>
+      <p>Ценность дизайнера смещается в сторону точности мышления. Чётко сформулировать, чего хочешь, становится ключевым навыком.</p>
+    </div>
+  </div>
+  <div class="takeaway-item">
+    <span class="t-num">2</span>
+    <div class="t-text">
+      <strong>ИИ усиливает наши структуры - хорошие и плохие</strong>
+      <p>Прочный фундамент + ИИ = рычаг. Хрупкий фундамент + ИИ = усиление проблем.</p>
+    </div>
+  </div>
+  <div class="takeaway-item">
+    <span class="t-num">3</span>
+    <div class="t-text">
+      <strong>Проектировать - значит сопротивляться автоматизму</strong>
+      <p>Скорость - это настройка по умолчанию. Выбирать осознанно - значит идти против течения. Именно там ценность.</p>
+    </div>
+  </div>
+  <div class="takeaway-item">
+    <span class="t-num">4</span>
+    <div class="t-text">
+      <strong>Вопрос ответственности не решён</strong>
+      <p>Кто решает, кто отвечает? По мере того как ИИ входит в наши процессы, этот вопрос станет неизбежным.</p>
+    </div>
+  </div>
+  <div class="takeaway-item">
+    <span class="t-num">5</span>
+    <div class="t-text">
+      <strong>Этика - уже не поза, это конкурентное преимущество</strong>
+      <p>Бренды, строящие доверие, удерживают клиентов иначе. Органическое удержание держится там, где зависимость рухнет при первом конкуренте.</p>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-name">Katia Bogdanova · Lead UX & Responsable Design Produit, Montagne Nutrition</span>
+    <span class="footer-meta">FLUPA UX Days 2026 · Vendredi 22 mai · Paris</span>
+  </div>
+
+</div>
+<div id="lb">
+  <img id="lb-img" src="" alt="">
+</div>
+<script>
+  var overlay = document.getElementById('lb');
+  var lbImg = document.getElementById('lb-img');
+
+  document.querySelectorAll('.page img').forEach(function(img) {
+    if (img.id === 'lb-img') return;
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      lbImg.src = this.src;
+      overlay.classList.add('open');
+    });
+  });
+
+  overlay.addEventListener('click', function() {
+    overlay.classList.remove('open');
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('open');
+  });
+</script>
+</body>
+</html>
